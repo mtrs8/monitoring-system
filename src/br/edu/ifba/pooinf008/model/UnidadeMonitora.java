@@ -32,7 +32,8 @@ public abstract class UnidadeMonitora {
 	
 	public boolean verificaConfiguracaoMinima(ArrayList<UnidadeMonitora> unidades) {
 		for(UnidadeMonitora config : unidades)
-			//if()
+			if(this.getVideo() && this.getTermometro() && this.getCo2() && this.getCh4() == 
+				config.getVideo() && config.getTermometro() && config.getCo2() && config.getCh4())
 				return true;
 		return false;
 	}

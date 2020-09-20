@@ -10,8 +10,12 @@ public class UnidadeManhattan extends UnidadeMonitora {
 	}
 
 	public double calcularDistancia(Localizacao destino) {
-		return  Math.abs(destino.getOrdenada() - destino.getAbscissa()) 
-				+ Math.abs(destino.getOrdenada() - destino.getAbscissa());
+		double diferencaAbscissa = 0, diferencaOrdenada = 0;
+		if(this.getLocalizacao() != null && destino != null) {
+			diferencaAbscissa = this.getLocalizacao().getAbscissa() - destino.getAbscissa();
+			diferencaOrdenada = this.getLocalizacao().getOrdenada() - destino.getOrdenada();
+		}
+		return  Math.abs(diferencaAbscissa) + Math.abs(diferencaOrdenada);
 	}
 
 }

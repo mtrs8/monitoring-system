@@ -6,4 +6,5 @@ public interface AreaMonitoradaIF {
 	
 	public String monitorar(Localizacao localizacao, boolean video,
 			boolean termometro, boolean co2, boolean ch4);
+	
 }

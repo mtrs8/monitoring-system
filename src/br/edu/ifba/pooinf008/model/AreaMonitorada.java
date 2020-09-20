@@ -15,4 +15,15 @@ public class AreaMonitorada implements AreaMonitoradaIF{
 			boolean termometro, boolean co2, boolean ch4) {
 		return null;
 	}
+	
+	public UnidadeMonitora unidadeMaisProxima(Localizacao localizacao) {
+		UnidadeMonitora unidade = null;
+		Double maiorDistancia = Double.MAX_VALUE;
+		for(UnidadeMonitora u : unidades) {
+			if(u.calcularDistancia(localizacao) < maiorDistancia) {
+				unidade = u;
+			}	
+		}
+		return unidade;
+	}
 }

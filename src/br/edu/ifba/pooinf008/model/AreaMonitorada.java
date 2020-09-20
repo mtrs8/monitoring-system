@@ -13,17 +13,31 @@ public class AreaMonitorada implements AreaMonitoradaIF{
 	
 	public String monitorar(Localizacao localizacao, boolean video,
 			boolean termometro, boolean co2, boolean ch4) {
-		return null;
+		ArrayList<UnidadeMonitora> unidadesConfigMinima = new ArrayList<>();
+		for(UnidadeMonitora unidade : unidades)
+			if(unidade.verificaConfiguracaoMinima(video, termometro, co2, ch4))
+				unidadesConfigMinima.add(unidade);
+		
+		UnidadeMonitora unidadeProxima = unidadeMaisProxima(localizacao, unidadesConfigMinima);
+		return unidadeProxima.getId();
 	}
 	
-	public UnidadeMonitora unidadeMaisProxima(Localizacao localizacao) {
+	public UnidadeMonitora unidadeMaisProxima(Localizacao localizacao, 
+			List<UnidadeMonitora> unidadeConfigMinima) {
 		UnidadeMonitora unidade = null;
 		Double maiorDistancia = Double.MAX_VALUE;
-		for(UnidadeMonitora u : unidades) {
+		for(UnidadeMonitora u : unidadeConfigMinima) {
 			if(u.calcularDistancia(localizacao) < maiorDistancia) {
 				unidade = u;
 			}	
 		}
 		return unidade;
 	}
+	
+	public void addUnidade(UnidadeMonitora unidade) {
+		unidades.add(unidade);
+	}
+	
+	
+	
 }

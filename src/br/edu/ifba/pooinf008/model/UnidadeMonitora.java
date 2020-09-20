@@ -30,12 +30,9 @@ public abstract class UnidadeMonitora {
 		return false;
 	}
 	
-	public boolean verificaConfiguracaoMinima(ArrayList<UnidadeMonitora> unidades) {
-		for(UnidadeMonitora config : unidades)
-			if(this.getVideo() && this.getTermometro() && this.getCo2() && this.getCh4() == 
-				config.getVideo() && config.getTermometro() && config.getCo2() && config.getCh4())
-				return true;
-		return false;
+	public boolean verificaConfiguracaoMinima(boolean video, boolean termometro, boolean co2, 
+			boolean ch4) {
+			return this.video == video && this.ch4 == ch4 && this.co2 == co2 && this.termometro == termometro;
 	}
 
 	public String getId() {
@@ -43,7 +40,7 @@ public abstract class UnidadeMonitora {
 	}
 
 
-	public void setId(String id) {
+	private void setId(String id) {
 		this.id = id;
 	}
 
@@ -95,6 +92,33 @@ public abstract class UnidadeMonitora {
 
 	public void setCh4(boolean ch4) {
 		this.ch4 = ch4;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UnidadeMonitora other = (UnidadeMonitora) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 	
 	

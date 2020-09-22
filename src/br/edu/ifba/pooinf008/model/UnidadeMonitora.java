@@ -7,6 +7,7 @@ public abstract class UnidadeMonitora {
 	private String id;
 	private Localizacao localizacao;
 	private boolean video, termometro, co2, ch4;
+	protected ArrayList<ConfiguracaoMinimaEnum> conf = new ArrayList<>();
 	
 	public UnidadeMonitora(String id, Localizacao l, boolean video,
 			boolean termometro, boolean co2, boolean ch4) {
@@ -35,10 +36,25 @@ public abstract class UnidadeMonitora {
 	
 	public boolean verificaConfiguracaoMinima(boolean video, boolean termometro, boolean co2, 
 			boolean ch4) {
-		return this.video == video || this.ch4 == ch4 || this.co2 == co2 
-				|| this.termometro == termometro;
+		//return this.video == video || this.ch4 == ch4 || this.co2 == co2 
+				//|| this.termometro == termometro;
+		boolean isConfigMinima = true;
+		for(ConfiguracaoMinimaEnum unidade : conf) {
+			
+			switch(unidade) {
+				case VIDEO:isConfigMinima = isConfigMinima && video; break;
+				case CH4: isConfigMinima = isConfigMinima && ch4; break;
+				case CO2: isConfigMinima = isConfigMinima && co2; break;
+				case TERMOMETRO: isConfigMinima = isConfigMinima && termometro; break;
+				default: isConfigMinima = false;
+			}
+			if(!isConfigMinima) {
+				break;
+			}
+		}
+		return isConfigMinima;		
 	}
-
+	
 	public String getId() {
 		return id;
 	}

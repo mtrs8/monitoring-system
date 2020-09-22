@@ -16,8 +16,7 @@ public class AreaMonitorada implements AreaMonitoradaIF{
 		try {
 			ArrayList<UnidadeMonitora> unidadesConfigMinima = new ArrayList<>();
 			for(UnidadeMonitora unidade : unidades)
-				if(unidade.comparaCoordenadas(localizacao) &&
-						unidade.verificaConfiguracaoMinima(video, termometro, co2, ch4))
+				if(unidade.verificaConfiguracaoMinima(video, termometro, co2, ch4))
 					unidadesConfigMinima.add(unidade);
 			
 			UnidadeMonitora unidadeProxima = unidadeMaisProxima(localizacao, unidadesConfigMinima);

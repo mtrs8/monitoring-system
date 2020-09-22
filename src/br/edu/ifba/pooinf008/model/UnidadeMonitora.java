@@ -38,11 +38,10 @@ public abstract class UnidadeMonitora {
 			boolean ch4) {
 		//return this.video == video || this.ch4 == ch4 || this.co2 == co2 
 				//|| this.termometro == termometro;
-		boolean isConfigMinima = true;
+		/*boolean isConfigMinima = true;
 		for(ConfiguracaoMinimaEnum unidade : conf) {
-			
 			switch(unidade) {
-				case VIDEO:isConfigMinima = isConfigMinima && video; break;
+				case VIDEO: isConfigMinima = isConfigMinima && video; break;
 				case CH4: isConfigMinima = isConfigMinima && ch4; break;
 				case CO2: isConfigMinima = isConfigMinima && co2; break;
 				case TERMOMETRO: isConfigMinima = isConfigMinima && termometro; break;
@@ -52,7 +51,31 @@ public abstract class UnidadeMonitora {
 				break;
 			}
 		}
-		return isConfigMinima;		
+		return isConfigMinima;
+		*/		
+		/*if((this.getVideo() == video) && (this.getTermometro() == termometro) && (this.getCh4() == ch4) 
+				&& (this.getCo2() == co2)){
+			return true;
+		}
+		return false;
+		*/
+		if(video) {
+			if(this.getVideo() != video)
+				return false;
+		}
+		if(termometro) {
+			if(this.getTermometro() != termometro)
+				return false;
+		}
+		if(co2) {
+			if(this.getCo2() != co2)
+				return false;
+		}
+		if(ch4) {
+			if(this.getCh4() != ch4)
+				return false;
+		}
+		return true;
 	}
 	
 	public String getId() {

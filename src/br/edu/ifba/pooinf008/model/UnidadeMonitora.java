@@ -11,8 +11,11 @@ public abstract class UnidadeMonitora {
 	public UnidadeMonitora(String id, Localizacao l, boolean video,
 			boolean termometro, boolean co2, boolean ch4) {
 		this.id = id;
-		this.localizacao = null;
-		this.video = this.ch4 = this.termometro = this.co2 = false;
+		this.localizacao = l;
+		this.video = video;
+		this.ch4 = ch4;
+		this.co2 = co2;
+		this.termometro = termometro;
 	}
 	
 	
@@ -32,7 +35,8 @@ public abstract class UnidadeMonitora {
 	
 	public boolean verificaConfiguracaoMinima(boolean video, boolean termometro, boolean co2, 
 			boolean ch4) {
-			return this.video == video && this.ch4 == ch4 && this.co2 == co2 && this.termometro == termometro;
+		return this.video == video || this.ch4 == ch4 || this.co2 == co2 
+				|| this.termometro == termometro;
 	}
 
 	public String getId() {

@@ -1,19 +1,20 @@
 package br.edu.ifba.pooinf008.model;
 
-public class Localizacao {
+public class Localizacao {// CRIEI A CLASSE LOCALIZACAO POR QUESTAO DE ORGANIZACAO
 	
-	private double abscissa;
-	private double ordenada;
+	private double abscissa; //PONTO X
+	private double ordenada; // PONTO Y
 	
 	public Localizacao() {
-		this(0.0, 0.0);
+		this(0.0, 0.0);// INICIALMENTE SETADO COM 0
 	}
 
-	public Localizacao(double abscissa, double ordenada) {
+	public Localizacao(double abscissa, double ordenada) { //RECEBE VALOR PASSADO PELO USUARIO
 		this.abscissa = abscissa;
 		this.ordenada = ordenada;
 	}
 
+	//*** GETTERS AND SETTERS ***
 	public double getAbscissa() {
 		return abscissa;
 	}
@@ -29,13 +30,15 @@ public class Localizacao {
 	public void setOrdenada(double ordenada) {
 		this.ordenada = ordenada;
 	}
+	
+	//***********************************
 
 	@Override
-	public String toString() {
+	public String toString() {// METODO P/ FORMAR UMA STRING
 		return "Localizacao [abscissa=" + abscissa + ", ordenada=" + ordenada + "]";
 	}
 	
-	public boolean equals(Localizacao l) {
+	public boolean equals(Localizacao l) {//COMPARA DUAS LOCALIZACOES 
 		if(!(l instanceof Localizacao)) {
 			return false;
 		}

@@ -19,7 +19,7 @@ public class App {
 		System.out.println("Localizacao: ");
 		Double abs = sc.nextDouble();
 		Double ord = sc.nextDouble();
-		
+		//CRIANDO AS UNIDADES
 		UnidadeMonitora unidade0 = new UnidadeEuclidiana("UE2333", new Localizacao(1, 1), true, false, true, false);
 		UnidadeMonitora unidade1 = new UnidadeEuclidiana("UE9389", new Localizacao(1, 2), true, true, true, true);
 		UnidadeMonitora unidade2 = new UnidadeEuclidiana("UE4330", new Localizacao(1, 0), true, false, true, false);
@@ -27,7 +27,7 @@ public class App {
 		UnidadeMonitora unidade4 = new UnidadeEuclidiana("UE0s10", new Localizacao(5, 8), false, true, false, true);
 		UnidadeMonitora unidade5 = new UnidadeManhattan("UM0923", new Localizacao(3, 4), false, false, true, true);
 		UnidadeMonitora unidade6 = new UnidadeManhattan("UM0924", new Localizacao(3, 8), false, false, true, true);
-		
+		//ADICIONANDO UNIDADES
 		am.addUnidade(unidade0);
 		am.addUnidade(unidade1);
 		am.addUnidade(unidade2);

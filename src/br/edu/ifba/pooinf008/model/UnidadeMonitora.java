@@ -2,14 +2,14 @@ package br.edu.ifba.pooinf008.model;
 
 import java.util.ArrayList;
 
-public abstract class UnidadeMonitora {
+public abstract class UnidadeMonitora {// CLASSE ABSTRATA
 	
 	private String id;
 	private Localizacao localizacao;
 	private boolean video, termometro, co2, ch4;
 	
 	public UnidadeMonitora(String id, Localizacao l, boolean video,
-			boolean termometro, boolean co2, boolean ch4) {
+			boolean termometro, boolean co2, boolean ch4) {//CONSTRUTOR
 		this.id = id;
 		this.localizacao = l;
 		this.video = video;
@@ -19,7 +19,7 @@ public abstract class UnidadeMonitora {
 	}
 	
 	
-	public abstract double calcularDistancia(Localizacao destino);
+	public abstract double calcularDistancia(Localizacao destino);//METODO ABSTRATO QUE CALCULA A DISTANCIA ENTRE UNIDADES
 	
 	public boolean comparaCoordenadas(Localizacao destino) {
 		return !this.getLocalizacao().equals(destino);
@@ -56,6 +56,7 @@ public abstract class UnidadeMonitora {
 		return true;
 	}
 	
+	// **** GETTERS AND SETTERS ****
 	public String getId() {
 		return id;
 	}
@@ -115,32 +116,5 @@ public abstract class UnidadeMonitora {
 		this.ch4 = ch4;
 	}
 
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UnidadeMonitora other = (UnidadeMonitora) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
-	
+	//**************************
 }

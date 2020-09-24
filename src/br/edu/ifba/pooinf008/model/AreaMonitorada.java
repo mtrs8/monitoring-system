@@ -38,6 +38,10 @@ public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA
 		return unidade;
 	}
 	
+	public void atualizarLocalizacao(UnidadeMonitora unidade, Localizacao localizacao) {
+		unidade.moverUnidade(localizacao);
+	}
+	
 	public void addUnidade(UnidadeMonitora unidade) { // ADICIONA 1 UNIDADE A LISTA DE UNIDADES
 		unidades.add(unidade);
 	}

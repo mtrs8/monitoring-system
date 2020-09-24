@@ -10,4 +10,6 @@ public interface AreaMonitoradaIF {  //INTERFACE E METODOS UTILIZADOS PARA ACESS
 	
 	public void addUnidade(UnidadeMonitora unidade);
 	
+	public void atualizarLocalizacao(UnidadeMonitora unidade, Localizacao localizacao);
+	
 }

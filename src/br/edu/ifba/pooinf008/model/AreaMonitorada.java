@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.pooinf008.controller.AreaMonitoradaIF;
-import br.edu.ifba.pooinf008.controller.IAreaMonitoradaDAO;
 import br.edu.ifba.pooinf008.persistence.AreaMonitoradaDAO;
+import br.edu.ifba.pooinf008.persistence.IAreaMonitoradaDAO;
 
 public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA AREAMONITORADAIF
 	private List<UnidadeMonitora> unidades = null ; //LISTA DE UNIDADES
@@ -39,8 +39,10 @@ public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA
 		UnidadeMonitora unidade = null;
 		Double maiorDistancia = Double.MAX_VALUE;
 		for(UnidadeMonitora u : unidadeConfigMinima) {
-			if(u.calcularDistancia(localizacao) < maiorDistancia) {
+			Double novaDistancia = u.calcularDistancia(localizacao);
+			if(novaDistancia < maiorDistancia) {
 				unidade = u;
+				maiorDistancia = novaDistancia;
 			}	
 		}
 		return unidade;
@@ -51,7 +53,12 @@ public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA
 	}
 	
 	public void addUnidade(UnidadeMonitora unidade) { // ADICIONA 1 UNIDADE A LISTA DE UNIDADES
-		unidades.add(unidade);
+		try {
+			areaMon.addUnidade(unidade);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

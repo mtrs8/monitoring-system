@@ -43,7 +43,9 @@ public class App {
 		
 		
 		//sc.close();
-		System.out.println(am.monitorar(new Localizacao(3.6, 3.8), true, false, true, true));
+		System.out.println(am.monitorar(new Localizacao(1.9, 2.0), true, true, true, true));
+		//am.addUnidade(new UnidadeEuclidiana(null, new Localizacao(9.0, 10.0), true, true, true, true));
+		
 		
 	}
 

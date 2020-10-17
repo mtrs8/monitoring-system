@@ -1,4 +1,4 @@
-package br.edu.ifba.pooinf008.controller;
+package br.edu.ifba.pooinf008.persistence;
 
 import java.util.List;
 

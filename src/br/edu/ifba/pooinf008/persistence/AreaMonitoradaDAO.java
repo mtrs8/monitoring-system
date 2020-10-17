@@ -7,16 +7,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.ifba.pooinf008.controller.IAreaMonitoradaDAO;
 import br.edu.ifba.pooinf008.model.Localizacao;
 import br.edu.ifba.pooinf008.model.UnidadeEuclidiana;
 import br.edu.ifba.pooinf008.model.UnidadeManhattan;
 import br.edu.ifba.pooinf008.model.UnidadeMonitora;
 
 public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
-
-	private static String SELECT = "SELECT * FROM unidade";
 	
+
+	private static String SELECT = " SELECT * FROM unidade";
+	
+	private static String UPDATE = "UPDATE unidade"
+								 + " SET x = ?, y = ?"
+								 + " WHERE id = ?";
+	
+	private static String INSERT = "INSERT INTO unidade(x, y, tipo, video, termometro, co2, ch4)"
+								 + "VALUES(?, ?, ?, ?, ?, ?, ?)";
 	
 	@Override
 	public List<UnidadeMonitora> getUnidades() throws Exception { 
@@ -33,12 +39,34 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 
 	@Override
 	public void atualizarUnidade(Localizacao localizacao, String id) throws Exception {
-		
+		Connection conn = ConnectionDAO.getConnection();
+		PreparedStatement ps = conn.prepareStatement(this.UPDATE);
+		try {
+			ps.setDouble(1, localizacao.getAbscissa());
+			ps.setDouble(2, localizacao.getOrdenada());
+			ps.setInt(3, Integer.parseInt(id));
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void addUnidade(UnidadeMonitora unidade) throws Exception {
-		// TODO Auto-generated method stub
+		Connection conn = ConnectionDAO.getConnection();
+		PreparedStatement ps = conn.prepareStatement(this.INSERT);
+		try {
+			ps.setDouble(1, unidade.getLocalizacao().getAbscissa());
+			ps.setDouble(2, unidade.getLocalizacao().getOrdenada());
+			ps.setInt(3, unidade instanceof UnidadeManhattan ? 1 : 0);
+			ps.setBoolean(4, unidade.getVideo());
+			ps.setBoolean(5, unidade.getTermometro());
+			ps.setBoolean(6, unidade.getCo2());
+			ps.setBoolean(7, unidade.getCh4());
+			ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -70,5 +98,4 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 			
 		return unidade;
 	}
-
 }

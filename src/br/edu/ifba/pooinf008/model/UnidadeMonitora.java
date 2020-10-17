@@ -35,8 +35,6 @@ public abstract class UnidadeMonitora {// CLASSE ABSTRATA
 	
 	public boolean verificaConfiguracaoMinima(boolean video, boolean termometro, boolean co2, 
 			boolean ch4) {
-		//return this.video == video || this.ch4 == ch4 || this.co2 == co2 
-				//|| this.termometro == termometro;
 		if(video) {
 			if(this.getVideo() != video)
 				return false;

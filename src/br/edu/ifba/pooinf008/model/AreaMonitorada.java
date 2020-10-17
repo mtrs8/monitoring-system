@@ -1,29 +1,37 @@
 package br.edu.ifba.pooinf008.model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.pooinf008.controller.AreaMonitoradaIF;
+import br.edu.ifba.pooinf008.controller.IAreaMonitoradaDAO;
+import br.edu.ifba.pooinf008.persistence.AreaMonitoradaDAO;
 
 public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA AREAMONITORADAIF
-	private List<UnidadeMonitora> unidades = new ArrayList<>(); //LISTA DE UNIDADES
-	
+	private List<UnidadeMonitora> unidades = null ; //LISTA DE UNIDADES
+	private IAreaMonitoradaDAO areaMon = new AreaMonitoradaDAO();
 	public AreaMonitorada() {
 	}
 	
 	public String monitorar(Localizacao localizacao, boolean video,
 			boolean termometro, boolean co2, boolean ch4) { //MONITORA UNIDADES E RETORNA ID DA MAIS PROXIMA
 		try {
-			ArrayList<UnidadeMonitora> unidadesConfigMinima = new ArrayList<>();
+			unidades = areaMon.getUnidades();
+			List<UnidadeMonitora> unidadesConfigMinima = new ArrayList<>();
 			for(UnidadeMonitora unidade : unidades)
 				if(unidade.verificaConfiguracaoMinima(video, termometro, co2, ch4))
 					unidadesConfigMinima.add(unidade);
 			
 			UnidadeMonitora unidadeProxima = unidadeMaisProxima(localizacao, unidadesConfigMinima);
+			areaMon.atualizarUnidade(localizacao, unidadeProxima.getId());
 			return unidadeProxima.getId();			
 		} catch(NullPointerException e) {
 			throw new NullPointerException("Unidade não encontrada!!"); 
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	public UnidadeMonitora unidadeMaisProxima(Localizacao localizacao, 

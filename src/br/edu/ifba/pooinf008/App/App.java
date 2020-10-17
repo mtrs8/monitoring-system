@@ -1,5 +1,6 @@
 package br.edu.ifba.pooinf008.App;
 
+import java.sql.Connection;
 import java.util.Scanner;
 
 import br.edu.ifba.pooinf008.controller.AreaMonitoradaIF;
@@ -12,15 +13,12 @@ import br.edu.ifba.pooinf008.model.UnidadeMonitora;
 public class App {
 	
 	public void run() {
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
 		AreaMonitoradaIF am = new AreaMonitorada();
 		//System.out.println("Id: ");
 		//String id = sc.nextLine(); //Ou gerar ID random
-		System.out.println("Localizacao: ");
-		Double abs = sc.nextDouble();
-		Double ord = sc.nextDouble();
 		//CRIANDO AS UNIDADES
-		UnidadeMonitora unidade0 = new UnidadeEuclidiana("UE2333", new Localizacao(1, 1), true, false, true, false);
+		/*UnidadeMonitora unidade0 = new UnidadeEuclidiana("UE2333", new Localizacao(1, 1), true, false, true, false);
 		UnidadeMonitora unidade1 = new UnidadeEuclidiana("UE9389", new Localizacao(1, 2), true, true, true, true);
 		UnidadeMonitora unidade2 = new UnidadeEuclidiana("UE4330", new Localizacao(1, 0), true, false, true, false);
 		UnidadeMonitora unidade3 = new UnidadeEuclidiana("UE2ws0", new Localizacao(2, 3), true, true, true, false);
@@ -41,10 +39,13 @@ public class App {
 		} catch(NullPointerException e) {
 			e.printStackTrace();
 		}
-		sc.close();
+		*/
+		
+		
+		//sc.close();
+		System.out.println(am.monitorar(new Localizacao(3.6, 3.8), true, false, true, true));
 		
 	}
-	
 
 	public static void main(String[] args) {
 		App app = new App();

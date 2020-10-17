@@ -34,6 +34,7 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 		while(rSet.next()) {
 			unidades.add(instanciaUnidade(rSet));
 		}
+		//ConnectionDAO.closeConnection();
 		return unidades;
 	}
 
@@ -47,6 +48,7 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 			ps.setInt(3, Integer.parseInt(id));
 			ps.executeUpdate();
 		} catch (Exception e) {
+			//ConnectionDAO.closeConnection();
 			e.printStackTrace();
 		}
 	}
@@ -65,6 +67,7 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 			ps.setBoolean(7, unidade.getCh4());
 			ps.executeUpdate();
 		} catch(Exception e) {
+			//ConnectionDAO.closeConnection();
 			e.printStackTrace();
 		}
 		

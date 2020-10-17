@@ -36,7 +36,7 @@ public class ConnectionDAO {
 	}
 	
 	public static Properties loadProperties() {
-		try(FileInputStream fs = new FileInputStream("C:\\Users\\Matheus Rodrigues\\eclipse-workspace\\TRABALHOPOOINF008\\src\\db.properties")){
+		try(FileInputStream fs = new FileInputStream("C:\\Users\\Matheus Rodrigues\\eclipse-workspace\\TRABALHOPOOINF008\\db.properties")){
 			Properties props = new Properties();
 			props.load(fs);
 			return props;

@@ -8,6 +8,8 @@ public abstract class UnidadeMonitora {// CLASSE ABSTRATA
 	private Localizacao localizacao;
 	private boolean video, termometro, co2, ch4;
 	
+	public UnidadeMonitora() { }
+	
 	public UnidadeMonitora(String id, Localizacao l, boolean video,
 			boolean termometro, boolean co2, boolean ch4) {//CONSTRUTOR
 		this.id = id;

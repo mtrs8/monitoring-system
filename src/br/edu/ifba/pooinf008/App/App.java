@@ -40,17 +40,30 @@ public class App {
 			e.printStackTrace();
 		}
 		*/
-		
-		
 		//sc.close();
-		System.out.println(am.monitorar(new Localizacao(1.9, 2.0), true, true, true, true));
+		//System.out.println(am.monitorar(new Localizacao(1.9, 2.0), true, true, true, true));
 		//am.addUnidade(new UnidadeEuclidiana(null, new Localizacao(9.0, 10.0), true, true, true, true));
+		String id = am.monitorar(new Localizacao(1.9, 2.0), true, false, true, true);
+		try {
+			UnidadeMonitora u = am.getUnidadeById(id);
+			System.out.println("UNIDADE MAIS PROXIMA ENCONTRADA: ");
+			System.out.println("ID: " + u.getId());
+			System.out.println("Lat: " + u.getLocalizacao().getAbscissa());
+			System.out.println("Longit: " + u.getLocalizacao().getOrdenada());
+			System.out.println("[Medidor CO2: " + u.getCo2() + " ]");
+			System.out.println("[Medidor CH4: " + u.getCh4() + " ]");
+			System.out.println("[TERMOMETRO: " + u.getTermometro() + " ]");
+			System.out.println("[Camera de video: " + u.getVideo() + " ]");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
 
 	public static void main(String[] args) {
-		App app = new App();
-		app.run();
+		//App app = new App();
+		//app.run();
 	}
 }

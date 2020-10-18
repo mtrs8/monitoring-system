@@ -17,12 +17,16 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 
 	private static String SELECT = " SELECT * FROM unidade";
 	
+	private static String SELECT_BY_ID = " SELECT * FROM unidade"
+									   + "WHERE id = ?";
+	
 	private static String UPDATE = "UPDATE unidade"
 								 + " SET x = ?, y = ?"
 								 + " WHERE id = ?";
 	
 	private static String INSERT = "INSERT INTO unidade(x, y, tipo, video, termometro, co2, ch4)"
 								 + "VALUES(?, ?, ?, ?, ?, ?, ?)";
+	
 	
 	@Override
 	public List<UnidadeMonitora> getUnidades() throws Exception { 
@@ -48,7 +52,6 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 			ps.setInt(3, Integer.parseInt(id));
 			ps.executeUpdate();
 		} catch (Exception e) {
-			//ConnectionDAO.closeConnection();
 			e.printStackTrace();
 		}
 	}
@@ -101,4 +104,5 @@ public class AreaMonitoradaDAO implements IAreaMonitoradaDAO {
 			
 		return unidade;
 	}
+
 }

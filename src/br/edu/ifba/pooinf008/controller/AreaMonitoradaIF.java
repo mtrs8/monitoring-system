@@ -12,4 +12,6 @@ public interface AreaMonitoradaIF {  //INTERFACE E METODOS UTILIZADOS PARA ACESS
 	
 	public void atualizarLocalizacao(UnidadeMonitora unidade, Localizacao localizacao);
 	
+	public UnidadeMonitora getUnidadeById(String id) throws Exception;
+	
 }

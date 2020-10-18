@@ -61,6 +61,15 @@ public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA
 		}
 	}
 	
+	public UnidadeMonitora getUnidadeById(String id) throws Exception {
+		
+		for(UnidadeMonitora u : unidades) {
+			if(u.getId() == id)
+				return u;
+		}
+		return null;
+	}
+	
 	
 	
 }

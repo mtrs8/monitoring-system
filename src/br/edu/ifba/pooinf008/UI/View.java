@@ -23,9 +23,6 @@ public class View extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,9 +36,7 @@ public class View extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public View() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,9 +45,10 @@ public class View extends JFrame {
 		contentPane.setBackground(new Color(173, 216, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		setTitle("Sistema de Monitoramento");
 		contentPane.setLayout(null);
 		
-		Button button = new Button("Euclidiana");
+		/*Button button = new Button("Euclidiana");
 		button.setFont(new Font("Montserrat", Font.BOLD, 16));
 		button.setForeground(Color.DARK_GRAY);
 		button.setBackground(new Color(175, 238, 238));
@@ -65,8 +61,8 @@ public class View extends JFrame {
 		button_1.setBackground(new Color(245, 222, 179));
 		button_1.setBounds(221, 59, 205, 47);
 		contentPane.add(button_1);
-		
-		Label label = new Label("Localiza\u00E7\u00E3o:");
+		*/
+		Label label = new Label("Localização:");
 		label.setFont(new Font("Montserrat", Font.BOLD, 16));
 		label.setBounds(68, 133, 106, 22);
 		contentPane.add(label);
@@ -83,11 +79,12 @@ public class View extends JFrame {
 		label_2.setBounds(68, 205, 85, 22);
 		contentPane.add(label_2);
 		
-		JLabel lblNewLabel = new JLabel("SELECIONE A UNIDADE");
+		/*JLabel lblNewLabel = new JLabel("SELECIONE A UNIDADE");
 		lblNewLabel.setForeground(new Color(47, 79, 79));
 		lblNewLabel.setFont(new Font("Montserrat", Font.BOLD, 24));
 		lblNewLabel.setBounds(69, 11, 301, 32);
 		contentPane.add(lblNewLabel);
+		*/
 		
 		TextField textField = new TextField();
 		textField.setBounds(157, 161, 213, 30);
@@ -134,13 +131,13 @@ public class View extends JFrame {
 		chckbxNewCheckBox_3.setBounds(68, 402, 22, 22);
 		contentPane.add(chckbxNewCheckBox_3);
 		
-		Label label_2_1 = new Label("C\u00E2mera de V\u00EDdeo");
+		Label label_2_1 = new Label("Camera de Video");
 		label_2_1.setForeground(Color.DARK_GRAY);
 		label_2_1.setFont(new Font("Montserrat", Font.BOLD, 13));
 		label_2_1.setBounds(96, 303, 154, 22);
 		contentPane.add(label_2_1);
 		
-		Label label_2_2 = new Label("Medidor de CO\u00B2");
+		Label label_2_2 = new Label("Medidor de CO2");
 		label_2_2.setForeground(Color.DARK_GRAY);
 		label_2_2.setFont(new Font("Montserrat", Font.BOLD, 13));
 		label_2_2.setBounds(96, 335, 131, 22);
@@ -152,7 +149,7 @@ public class View extends JFrame {
 		label_2_3.setBounds(96, 370, 154, 22);
 		contentPane.add(label_2_3);
 		
-		Label label_2_4 = new Label("Term\u00F4metro");
+		Label label_2_4 = new Label("Termometro");
 		label_2_4.setForeground(Color.DARK_GRAY);
 		label_2_4.setFont(new Font("Montserrat", Font.BOLD, 13));
 		label_2_4.setBounds(96, 402, 119, 22);
@@ -165,7 +162,7 @@ public class View extends JFrame {
 		button_2.setBounds(117, 455, 210, 45);
 		contentPane.add(button_2);
 		
-		Label label_4 = new Label("Desenvolvido por Adriel Gama, Matheus Rodrigues e Tamires Manh\u00E3es");
+		Label label_4 = new Label("Desenvolvido por Adriel Gama, Matheus Rodrigues e Tamires Manhães");
 		label_4.setForeground(SystemColor.text);
 		label_4.setBounds(41, 559, 358, 22);
 		contentPane.add(label_4);

@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.pooinf008.controller.AreaMonitoradaIF;
+import br.edu.ifba.pooinf008.exceptions.DBException;
 import br.edu.ifba.pooinf008.persistence.AreaMonitoradaDAO;
 import br.edu.ifba.pooinf008.persistence.IAreaMonitoradaDAO;
 
 public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA AREAMONITORADAIF
 	private List<UnidadeMonitora> unidades = null ; //LISTA DE UNIDADES
 	private IAreaMonitoradaDAO areaMon = new AreaMonitoradaDAO();
-	public AreaMonitorada() {
-	}
+	
+	public AreaMonitorada() {};
 	
 	public String monitorar(Localizacao localizacao, boolean video,
 			boolean termometro, boolean co2, boolean ch4) { //MONITORA UNIDADES E RETORNA ID DA MAIS PROXIMA
@@ -25,7 +26,7 @@ public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA
 			
 			UnidadeMonitora unidadeProxima = unidadeMaisProxima(localizacao, unidadesConfigMinima);
 			areaMon.atualizarUnidade(localizacao, unidadeProxima.getId());
-			return unidadeProxima.getId();			
+			return unidadeProxima.getId();		
 		} catch(NullPointerException e) {
 			throw new NullPointerException("Unidade não encontrada!!"); 
 		} catch(Exception e) {
@@ -62,7 +63,6 @@ public class AreaMonitorada implements AreaMonitoradaIF{ //CLASSE QUE IMPLEMENTA
 	}
 	
 	public UnidadeMonitora getUnidadeById(String id) throws Exception {
-		
 		for(UnidadeMonitora u : unidades) {
 			if(u.getId() == id)
 				return u;

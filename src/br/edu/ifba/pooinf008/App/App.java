@@ -43,7 +43,7 @@ public class App {
 		//sc.close();
 		//System.out.println(am.monitorar(new Localizacao(1.9, 2.0), true, true, true, true));
 		//am.addUnidade(new UnidadeEuclidiana(null, new Localizacao(9.0, 10.0), true, true, true, true));
-		String id = am.monitorar(new Localizacao(1.9, 2.0), true, false, true, true);
+		String id = am.monitorar(new Localizacao(20.0, 22.0), true, false, true, true);
 		try {
 			UnidadeMonitora u = am.getUnidadeById(id);
 			System.out.println("UNIDADE MAIS PROXIMA ENCONTRADA: ");
@@ -63,7 +63,7 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-		//App app = new App();
-		//app.run();
+		App app = new App();
+		app.run();
 	}
 }

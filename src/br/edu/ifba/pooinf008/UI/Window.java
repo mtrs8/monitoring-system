@@ -33,8 +33,10 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
+import br.edu.ifba.pooinf008.controller.AreaMonitoradaIF;
 import br.edu.ifba.pooinf008.model.AreaMonitorada;
 import br.edu.ifba.pooinf008.model.Localizacao;
 import br.edu.ifba.pooinf008.model.UnidadeMonitora;
@@ -45,9 +47,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 import javax.swing.JTree;
 import javax.swing.JEditorPane;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
-public class Window extends JFrame implements ActionListener{
-	private AreaMonitorada area; 
+public class Window extends JFrame implements ActionListener{ 
 	private Localizacao coordenadas;
 	
 	private JTextField textFieldLatitude;
@@ -58,17 +61,9 @@ public class Window extends JFrame implements ActionListener{
 	private JCheckBox co2CheckBox;
 	private JCheckBox ch4CheckBox;
 	private JButton monitorarBtn;
+	private AreaMonitoradaIF area;
 	
-	
-	/**
-	 * Launch the application.
-	 */
 	public Window() {
-		BorderLayout borderLayout = (BorderLayout) getContentPane().getLayout();
-		render();
-	}
-	
-	private void render() {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -76,31 +71,36 @@ public class Window extends JFrame implements ActionListener{
 		setSize(600,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMaximumSize(new Dimension(500, 500));
+		BorderLayout borderLayout = (BorderLayout) getContentPane().getLayout();
+		this.render();
+	}
+	
+	private void render() {
 		
 		JPanel coordenadas = new JPanel();
 		coordenadas.setBorder(new EmptyBorder(20, 10, 20, 10));
 		getContentPane().add(coordenadas, BorderLayout.NORTH);
 		coordenadas.setLayout(new BoxLayout(coordenadas, BoxLayout.X_AXIS));
 		
-		JPanel Localizacao = new JPanel();
-		FlowLayout flowLayout_2 = (FlowLayout) Localizacao.getLayout();
+		JPanel pnlLocalizacao = new JPanel();
+		FlowLayout flowLayout_2 = (FlowLayout) pnlLocalizacao.getLayout();
 		flowLayout_2.setVgap(10);
 		flowLayout_2.setHgap(30);
-		Localizacao.setBorder(new TitledBorder(null, "Localização", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		coordenadas.add(Localizacao);
+		pnlLocalizacao.setBorder(new TitledBorder(null, "Localizacao", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		coordenadas.add(pnlLocalizacao);
 		
 		JLabel lblLatitude = new JLabel("Latitude");
-		Localizacao.add(lblLatitude);
+		pnlLocalizacao.add(lblLatitude);
 		
 		textFieldLatitude = new JTextField();
-		Localizacao.add(textFieldLatitude);
+		pnlLocalizacao.add(textFieldLatitude);
 		textFieldLatitude.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Longitutde");
-		Localizacao.add(lblNewLabel_1);
+		JLabel lblLongitude = new JLabel("Longitutde");
+		pnlLocalizacao.add(lblLongitude);
 		
 		textFieldLongitude = new JTextField();
-		Localizacao.add(textFieldLongitude);
+		pnlLocalizacao.add(textFieldLongitude);
 		textFieldLongitude.setColumns(10);
 		
 		JPanel sensores = new JPanel();
@@ -119,9 +119,8 @@ public class Window extends JFrame implements ActionListener{
 		JPanel panel = new JPanel();
 		Sensors.add(panel);
 		
-		JLabel lblVideo = new JLabel("Vídeo");
-		panel.add(lblVideo);
-		
+		JLabel lblVideo = new JLabel("Video");
+		panel.add(lblVideo);	
 		videoCheckBox = new JCheckBox("");
 		panel.add(videoCheckBox);
 		
@@ -130,7 +129,6 @@ public class Window extends JFrame implements ActionListener{
 		
 		JLabel lblTermometro = new JLabel("Termometro");
 		panel_1.add(lblTermometro);
-		
 		termometroCheckBox = new JCheckBox("");
 		panel_1.add(termometroCheckBox);
 		
@@ -138,17 +136,15 @@ public class Window extends JFrame implements ActionListener{
 		Sensors.add(panel_2);
 		
 		JLabel lblCo2 = new JLabel("CO2");
-		panel_2.add(lblCo2);
-		
+		panel_2.add(lblCo2);		
 		co2CheckBox = new JCheckBox("");
 		panel_2.add(co2CheckBox);
-		
+
 		JPanel panel_3 = new JPanel();
 		Sensors.add(panel_3);
 		
-		JLabel ch4lbl = new JLabel("CH4");
-		panel_3.add(ch4lbl);
-		
+		JLabel lblCh4 = new JLabel("CH4");
+		panel_3.add(lblCh4);
 		ch4CheckBox = new JCheckBox("");
 		panel_3.add(ch4CheckBox);
 		
@@ -170,7 +166,8 @@ public class Window extends JFrame implements ActionListener{
 		JLabel lblId = new JLabel("Id:");
 		retorno.add(lblId);
 		
-		textFieldID = new JTextField();
+		this.textFieldID = new JTextField();
+		textFieldID.setText("Sa�da");
 		textFieldID.setEnabled(false);
 		textFieldID.setPreferredSize(new Dimension(40, 19));
 		textFieldID.setMinimumSize(new Dimension(40, 19));
@@ -192,38 +189,55 @@ public class Window extends JFrame implements ActionListener{
 		
 	}
 	
-	private void buscarUnidade() {
-		Double latitude = Double.valueOf(this.textFieldLatitude.getText());
-		Double longitude = Double.valueOf(this.textFieldLongitude.getText());
+	private String buscarUnidade() {
+		
+		Double latitude = Double.parseDouble(this.textFieldLatitude.getText());
+		Double longitude = Double.parseDouble(this.textFieldLongitude.getText());
 		Boolean video = Boolean.valueOf(this.videoCheckBox.isSelected());
 		Boolean termometro = Boolean.valueOf(this.termometroCheckBox.isSelected());
 		Boolean co2 = Boolean.valueOf(this.co2CheckBox.isSelected());
 		Boolean ch4 = Boolean.valueOf(this.ch4CheckBox.isSelected());
-		
-		
-		String unidade = area.monitorar(new Localizacao(latitude, longitude), video, termometro, co2, ch4);
+		String idUnidade = String.valueOf(area.monitorar(new Localizacao(latitude, longitude),
+							video, termometro, co2, ch4));
+		//String idUnidade = area.monitorar(new Localizacao(2.3, 3.5),
+				//true, true, false, true);
+		//System.out.println(idUnidade);
+
+		return idUnidade;
 	}
 	
 
-	public void ActionEvent(ActionEvent arg0) {
-		if(arg0.getSource().equals(this.monitorarBtn)) {
+	/*public void ActionEvent(ActionEvent e) {
+		if(e.getSource().equals(this.monitorarBtn)) {
 			buscarUnidade();
 		}
 		this.render();
-	}
+	}*/
 
 	@Override
-	public void actionPerformed(java.awt.event.ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(this.monitorarBtn)){
+			System.out.println("teste");
+				try {
+					System.out.println();
+					UnidadeMonitora u = this.area.getUnidadeById(buscarUnidade());
+					System.out.println(u.getId());
+					//this.textFieldID.setText(String.valueOf(u.getId()));
+					//JOptionPane.showMessageDialog(null, "UNIDADE MAIS PROXIMA" + "ID: " + u.getId());
+				} catch (Exception e1) {
+					e1.printStackTrace();			
+				}
+		}
+		this.render();
+		System.out.println("console log");
 	}
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Window frame = new Window();
-					frame.setVisible(true);
+					//Window frame = new Window();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

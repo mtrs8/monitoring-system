@@ -116,5 +116,13 @@ public abstract class UnidadeMonitora {// CLASSE ABSTRATA
 		this.ch4 = ch4;
 	}
 
+	@Override
+	public String toString() {
+		return "UnidadeMonitora [id=" + id + ", localizacao=" + localizacao + ", video=" + video + ", termometro="
+				+ termometro + ", co2=" + co2 + ", ch4=" + ch4 + "]";
+	}
+
 	//**************************
+	
+	
 }

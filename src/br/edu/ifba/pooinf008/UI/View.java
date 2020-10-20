@@ -6,37 +6,34 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import br.edu.ifba.pooinf008.controller.AreaMonitoradaIF;
+import br.edu.ifba.pooinf008.model.AreaMonitorada;
+import br.edu.ifba.pooinf008.model.Localizacao;
+import br.edu.ifba.pooinf008.model.UnidadeMonitora;
+
 import java.awt.Color;
 import java.awt.Button;
 import javax.swing.UIManager;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.awt.Panel;
 import java.awt.Label;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Checkbox;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 
-public class View extends JFrame {
+public class View extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					View frame = new View();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
+	private AreaMonitoradaIF am = new AreaMonitorada();
+	
 	public View() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,13 +83,13 @@ public class View extends JFrame {
 		contentPane.add(lblNewLabel);
 		*/
 		
-		TextField textField = new TextField();
-		textField.setBounds(157, 161, 213, 30);
-		contentPane.add(textField);
+		TextField txtFieldLatitude = new TextField();
+		txtFieldLatitude.setBounds(157, 161, 213, 30);
+		contentPane.add(txtFieldLatitude);
 		
-		TextField textField_1 = new TextField();
-		textField_1.setBounds(157, 200, 213, 30);
-		contentPane.add(textField_1);
+		TextField txtFieldLongitude = new TextField();
+		txtFieldLongitude.setBounds(157, 200, 213, 30);
+		contentPane.add(txtFieldLongitude);
 		
 		Label label_3 = new Label("Equipamentos:");
 		label_3.setFont(new Font("Montserrat", Font.BOLD, 16));
@@ -161,6 +158,7 @@ public class View extends JFrame {
 		button_2.setBackground(SystemColor.controlDkShadow);
 		button_2.setBounds(117, 455, 210, 45);
 		contentPane.add(button_2);
+		button_2.addActionListener(this);
 		
 		Label label_4 = new Label("Desenvolvido por Adriel Gama, Matheus Rodrigues e Tamires Manhães");
 		label_4.setForeground(SystemColor.text);
@@ -168,4 +166,51 @@ public class View extends JFrame {
 		contentPane.add(label_4);
 		
 	}
+	
+	/*private String buscarUnidade() {
+		
+		Double latitude = Double.parseDouble(this.txtFieldLatitude.getText());
+		Double longitude = Double.parseDouble(this.txtFieldLongitude.getText());
+		Boolean video = Boolean.valueOf(this.chckbxNewCheckBox.isSelected());
+		Boolean termometro = Boolean.valueOf(this.chckbxNewCheckBox_1.isSelected());
+		Boolean co2 = Boolean.valueOf(this.chckbxNewCheckBox_2.isSelected());
+		Boolean ch4 = Boolean.valueOf(this.chckbxNewCheckBox_3.isSelected());
+		
+		String idUnidade = am.monitorar(new Localizacao(latitude, longitude),
+							video, termometro, co2, ch4);
+		return idUnidade;
+	}*/
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		/*if(e.getSource().equals(this)){
+			try {
+				UnidadeMonitora u = this.am.getUnidadeById(buscarUnidade());
+				System.out.println(u.getId());
+				this.textFieldID.setText(String.valueOf("[ ID:" + u.getId()) + " ]\n"
+						+ String.valueOf(u.getLocalizacao().toString() + "\n")
+										+ String.valueOf("[CAMERA DE VIDEO: " + u.getVideo() + " ]\n")
+										+ String.valueOf("[TERMOMETRO: " + u.getTermometro() + "]\n")
+										+ String.valueOf("[MEDIDOR CO2: " + u.getCo2() + " ]\n")
+										+ String.valueOf("[MEDIDOR CH4: " + u.getCh4() +" ]\n"));
+				JOptionPane.showMessageDialog(null, "UNIDADE MAIS PROXIMA\n" + " ID: " + u.getId());
+			} catch (Exception e1) {
+				e1.printStackTrace();	
+		}*/
+		
+	}
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					View frame = new View();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 }

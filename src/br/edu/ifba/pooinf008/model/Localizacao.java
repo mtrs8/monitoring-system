@@ -35,7 +35,7 @@ public class Localizacao {// CRIEI A CLASSE LOCALIZACAO POR QUESTAO DE ORGANIZAC
 
 	@Override
 	public String toString() {// METODO P/ FORMAR UMA STRING
-		return "Localizacao [abscissa=" + abscissa + "]" + "\n[ Ordenada=" + ordenada + "]";
+		return "[Lat=" + abscissa + "]" + "[ Longit=" + ordenada + "]";
 	}
 	
 	public boolean equals(Localizacao l) {//COMPARA DUAS LOCALIZACOES 

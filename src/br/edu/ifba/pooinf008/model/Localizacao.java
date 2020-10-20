@@ -35,16 +35,15 @@ public class Localizacao {// CRIEI A CLASSE LOCALIZACAO POR QUESTAO DE ORGANIZAC
 
 	@Override
 	public String toString() {// METODO P/ FORMAR UMA STRING
-		return "Localizacao [abscissa=" + abscissa + ", ordenada=" + ordenada + "]";
+		return "Localizacao [abscissa=" + abscissa + "]" + "\n[ Ordenada=" + ordenada + "]";
 	}
 	
 	public boolean equals(Localizacao l) {//COMPARA DUAS LOCALIZACOES 
 		if(!(l instanceof Localizacao)) {
 			return false;
 		}
-		Localizacao outra = l;
-		double abscissaResultado = Double.compare(this.getAbscissa(), outra.getAbscissa());
-		double ordenadaResultado = Double.compare(this.getOrdenada(), outra.getOrdenada());
+		double abscissaResultado = Double.compare(this.getAbscissa(), l.getAbscissa());
+		double ordenadaResultado = Double.compare(this.getOrdenada(), l.getOrdenada());
 		return abscissaResultado == 0.0 && ordenadaResultado == 0.0;
 	}
 	

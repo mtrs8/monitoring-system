@@ -61,7 +61,7 @@ public class Window extends JFrame implements ActionListener{
 	private JCheckBox co2CheckBox;
 	private JCheckBox ch4CheckBox;
 	private JButton monitorarBtn;
-	private AreaMonitoradaIF area;
+	private AreaMonitoradaIF am = new AreaMonitorada();
 	
 	public Window() {
 		setVisible(true);
@@ -197,47 +197,42 @@ public class Window extends JFrame implements ActionListener{
 		Boolean termometro = Boolean.valueOf(this.termometroCheckBox.isSelected());
 		Boolean co2 = Boolean.valueOf(this.co2CheckBox.isSelected());
 		Boolean ch4 = Boolean.valueOf(this.ch4CheckBox.isSelected());
-		String idUnidade = String.valueOf(area.monitorar(new Localizacao(latitude, longitude),
-							video, termometro, co2, ch4));
-		//String idUnidade = area.monitorar(new Localizacao(2.3, 3.5),
-				//true, true, false, true);
-		//System.out.println(idUnidade);
-
+		
+		String idUnidade = am.monitorar(new Localizacao(latitude, longitude),
+							video, termometro, co2, ch4);
 		return idUnidade;
 	}
-	
-
-	/*public void ActionEvent(ActionEvent e) {
-		if(e.getSource().equals(this.monitorarBtn)) {
-			buscarUnidade();
-		}
-		this.render();
-	}*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(this.monitorarBtn)){
-			System.out.println("teste");
 				try {
-					System.out.println();
-					UnidadeMonitora u = this.area.getUnidadeById(buscarUnidade());
-					System.out.println(u.getId());
-					//this.textFieldID.setText(String.valueOf(u.getId()));
-					//JOptionPane.showMessageDialog(null, "UNIDADE MAIS PROXIMA" + "ID: " + u.getId());
+					UnidadeMonitora u = this.am.getUnidadeById(buscarUnidade());
+					//System.out.println(u.getId());
+					this.textFieldID.setText(String.valueOf("[ ID:" + u.getId()) + " ]\n"
+							+ String.valueOf(u.getLocalizacao().toString() + "\n")
+											+ String.valueOf("[CAMERA DE VIDEO: " + u.getVideo() + " ]\n")
+											+ String.valueOf("[TERMOMETRO: " + u.getTermometro() + "]\n")
+											+ String.valueOf("[MEDIDOR CO2: " + u.getCo2() + " ]\n")
+											+ String.valueOf("[MEDIDOR CH4: " + u.getCh4() +" ]\n"));
+					JOptionPane.showMessageDialog(null, "UNIDADE MAIS PROXIMA\n" + " ID: " + u.getId());
 				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(this,
+						    "Erro ao acessar Banco de Dados",
+						    "ERROR NOT FOUND", 
+						    JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();			
 				}
 		}
 		this.render();
-		System.out.println("console log");
 	}
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//Window frame = new Window();
-					//frame.setVisible(true);
+					Window frame = new Window();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

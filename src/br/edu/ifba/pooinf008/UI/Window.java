@@ -67,9 +67,10 @@ public class Window extends JFrame implements ActionListener {
 	private JTextField textFieldVideo;
 	private JTextField textFieldCo2;
 	private JTextField textFieldCh4;
-	private AreaMonitoradaIF am = new AreaMonitorada();
+	private AreaMonitoradaIF am;
 
 	public Window() {
+		this.am = new AreaMonitorada();
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -178,19 +179,21 @@ public class Window extends JFrame implements ActionListener {
 		panel_4.add(lblId);
 
 		textFieldID = new JTextField();
-		textFieldID.setForeground(Color.RED);
+		textFieldID.setEditable(false);
+		textFieldID.setForeground(Color.BLACK);
 		panel_4.add(textFieldID);
 		textFieldID.setColumns(16);
-		textFieldID.setEnabled(false);
+		//textFieldID.setEnabled(false);
 
 		JLabel lblLocalizacao = new JLabel("Localização:");
 		panel_4.add(lblLocalizacao);
 
 		textFieldLocalizacao = new JTextField();
-		textFieldLocalizacao.setForeground(Color.GREEN);
+		textFieldLocalizacao.setEditable(false);
+		textFieldLocalizacao.setForeground(Color.BLACK);
 		panel_4.add(textFieldLocalizacao);
 		textFieldLocalizacao.setColumns(16);
-		textFieldLocalizacao.setEnabled(false);
+		//textFieldLocalizacao.setEnabled(false);
 
 		JPanel panel_6 = new JPanel();
 		retorno.add(panel_6);
@@ -200,10 +203,11 @@ public class Window extends JFrame implements ActionListener {
 		panel_6.add(lblVid);
 
 		textFieldVideo = new JTextField();
-		textFieldVideo.setForeground(Color.RED);
+		textFieldVideo.setEditable(false);
+		textFieldVideo.setForeground(Color.BLACK);
 		panel_6.add(textFieldVideo);
 		textFieldVideo.setColumns(15);
-		textFieldVideo.setEnabled(false);
+		//textFieldVideo.setEnabled(false);
 		
 
 		JLabel lblTerm = new JLabel("Termometro");
@@ -211,10 +215,11 @@ public class Window extends JFrame implements ActionListener {
 		lblTerm.setHorizontalAlignment(SwingConstants.LEFT);
 
 		textFieldTermometro = new JTextField();
-		textFieldTermometro.setForeground(Color.GREEN);
+		textFieldTermometro.setEditable(false);
+		textFieldTermometro.setForeground(Color.BLACK);
 		panel_6.add(textFieldTermometro);
 		textFieldTermometro.setColumns(15);
-		textFieldTermometro.setEnabled(false);
+		//textFieldTermometro.setEnabled(false);
 
 		JPanel panel_7 = new JPanel();
 		retorno.add(panel_7);
@@ -224,18 +229,20 @@ public class Window extends JFrame implements ActionListener {
 		panel_7.add(lblc2);
 
 		textFieldCo2 = new JTextField();
+		textFieldCo2.setEditable(false);
 		panel_7.add(textFieldCo2);
 		textFieldCo2.setColumns(18);
-		textFieldCo2.setEnabled(false);
+		//textFieldCo2.setEnabled(false);
 
 		JLabel lblNewLabel = new JLabel("CH4");
 		panel_7.add(lblNewLabel);
 
 		textFieldCh4 = new JTextField();
-		textFieldCh4.setForeground(Color.GREEN);
+		textFieldCh4.setEditable(false);
+		textFieldCh4.setForeground(Color.BLACK);
 		panel_7.add(textFieldCh4);
 		textFieldCh4.setColumns(18);
-		textFieldCh4.setEnabled(false);
+		//textFieldCh4.setEnabled(false);
 
 		JPanel monitorar = new JPanel();
 		FlowLayout flowLayout_5 = (FlowLayout) monitorar.getLayout();
